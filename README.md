@@ -1,36 +1,32 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Trama Digital — sitio web
 
-## Getting Started
+Sitio de una sola página en Next.js (App Router) + Tailwind CSS v4. Mobile first, tema oscuro.
 
-First, run the development server:
+## Desarrollo
 
 ```bash
+npm install
+cp .env.example .env.local   # completar RESEND_API_KEY
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Abrir [http://localhost:3000](http://localhost:3000).
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Estructura
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- `app/` — layout, página principal y la ruta de API del formulario de contacto (`app/api/contacto`)
+- `components/` — una sección del sitio por archivo
+- `lib/contenido.ts` — todos los textos, precios y datos de contacto editables, en un solo lugar
+- `lib/rateLimit.ts` — límite de envíos del formulario de contacto por IP
 
-## Learn More
+## Deploy — Netlify
 
-To learn more about Next.js, take a look at the following resources:
+El proyecto usa `@netlify/plugin-nextjs` (configurado en `netlify.toml`) para soportar App Router, Route Handlers y los headers de seguridad definidos en `next.config.ts`.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Variables de entorno a configurar en Netlify (Site settings → Environment variables):
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+- `RESEND_API_KEY` — clave de la cuenta de Resend
+- `RESEND_FROM` — remitente verificado (opcional; sin esto usa `onboarding@resend.dev`)
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+**Nota:** no usar Vercel — su plan gratuito prohíbe uso comercial.
+# Trama
